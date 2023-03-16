@@ -1,12 +1,13 @@
 import React from 'react'
 import { StyleSheet, View, Text, Button, TouchableHighlight } from 'react-native'
+
 import {COLORS} from '../colors/colors'
 
 const styles = StyleSheet.create({
     touchableHighlight:{
         borderWidth: 1,
         width:'90%',
-        height: '10%',
+        height: '15%',
         justifyContent:'center',
         paddingHorizontal:'5%',
         borderRadius: 8,
@@ -15,21 +16,26 @@ const styles = StyleSheet.create({
         marginTop:15,
     },
     text:{
-        fontSize: 16,
+        fontSize: 18,
+        letterSpacing:3,
         fontFamily:'open-sans',
         color: COLORS.WHITE_SMOKE,
+        paddingHorizontal: 20,
     }
 })
 
-const CategoryButton = ({ title, onPress }) => {
+const CategoryButton = ({ title, icon, onPress }) => {
     return (
             <TouchableHighlight 
                 style={styles.touchableHighlight}
                 onPress={onPress}
             >
-                <Text style={styles.text}>
-                    {title} 
-                </Text>
+                <View style={{flexDirection:'row'}}>
+                    {icon()}
+                    <Text style={styles.text}>
+                        {title} 
+                    </Text>
+                </View>
             </TouchableHighlight>
     )
 }

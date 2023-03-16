@@ -10,15 +10,20 @@ import {COLORS} from '../colors/colors'
 
 const styles = StyleSheet.create({
   container:{
-    padding:10,
+    justifyContent:'center',
     alignItems:'center',
+    height:'85%',
+    width: '100%',
   },
   header:{
     fontSize:24,
     fontWeight:'bold',
     marginVertical: 15,
     color:COLORS.DODGER_BLUE,
-  }
+  },
+  flatList:{
+    width:'90%',
+  },
 })
 
 const ProductsScreen = ({ navigation, route }) => {
@@ -30,6 +35,7 @@ const ProductsScreen = ({ navigation, route }) => {
       <Text style={styles.header}>{category}</Text>
 
       <FlatList
+        style={styles.flatList}
         data={products}
         renderItem={({item, index})=>(
           <ProductCard key={index} 

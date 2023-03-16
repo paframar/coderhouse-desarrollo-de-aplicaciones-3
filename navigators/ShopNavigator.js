@@ -6,6 +6,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import CategoryScreen from '../src/screens/CategoryScreen'
 import ProductsScreen from  '../src/screens/ProductsScreen'
 import DetailScreen from '../src/screens/DetailScreen'
+import { COLORS } from '../src/colors/colors'
 
 const styles = StyleSheet.create({})
 
@@ -13,9 +14,17 @@ const Stack = createNativeStackNavigator();
 
 const ShopNavigator = () => {
     return (
-        <NavigationContainer>
             <Stack.Navigator 
                 initialRouteName='Category'
+                screenOptions={{
+                    headerStyle: {
+                      backgroundColor: Platform.OS === 'android' ? COLORS.WHITE : ''
+                    },
+                    headerTintColor: Platform.OS === 'android' ? 'white' : COLORS.NAVY_BLUE,
+                    headerTitleStyle: {
+                      fontFamily: 'OpenSans_700Bold'
+                    }
+                  }}
             >
                 <Stack.Screen 
                     name='Category' 
@@ -30,7 +39,6 @@ const ShopNavigator = () => {
                     component= {DetailScreen} 
                 />
             </Stack.Navigator>
-        </NavigationContainer>
     )
 }
 
