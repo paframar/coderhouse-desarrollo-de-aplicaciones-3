@@ -22,7 +22,7 @@ const ShopNavigator = () => {
                     },
                     headerTintColor: Platform.OS === 'android' ? 'white' : COLORS.NAVY_BLUE,
                     headerTitleStyle: {
-                      fontFamily: 'OpenSans_700Bold'
+                      fontFamily: 'open-sans-bold'
                     }
                   }}
             >

@@ -2,9 +2,10 @@ import React from 'react'
 import { StyleSheet, View, Text } from 'react-native'
 import { NavigationContainer } from '@react-navigation/native'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
-import { Ionicons } from '@expo/vector-icons'
+import { Ionicons, Octicons } from '@expo/vector-icons'
 import { Entypo } from '@expo/vector-icons'
 
+import OrdersScreen from '../src/screens/OrdersScreen'
 import CartScreen from '../src/screens/CartScreen'
 import ShopNavigator from './ShopNavigator'
 import styles from './styles'
@@ -41,6 +42,18 @@ const TabsNavigator = () => {
                         <View style={styles.tabBarIcon}>
                           <Ionicons name="md-cart" size={24} color={focused ? COLORS.DODGER_BLUE : COLORS.GRAY} />
                           <Text style={{ color: focused ? COLORS.DODGER_BLUE : COLORS.GRAY }}>Cart</Text>
+                        </View>
+                      )
+                }}
+            />
+            <BottomTabs.Screen 
+                name= {'orders'} 
+                component={OrdersScreen} 
+                options={{
+                    tabBarIcon: ({ focused }) => (
+                        <View style={styles.tabBarIcon}>
+                          <Octicons name="checklist" size={24} color={focused ? COLORS.DODGER_BLUE : COLORS.GRAY} />
+                          <Text style={{ color: focused ? COLORS.DODGER_BLUE : COLORS.GRAY }}>Orders</Text>
                         </View>
                       )
                 }}

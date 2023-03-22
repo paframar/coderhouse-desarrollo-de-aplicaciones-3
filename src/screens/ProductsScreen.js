@@ -37,8 +37,9 @@ const ProductsScreen = ({ navigation, route }) => {
       <FlatList
         style={styles.flatList}
         data={products}
-        renderItem={({item, index})=>(
-          <ProductCard key={index} 
+        renderItem={({item})=>(
+          <ProductCard 
+            key={item} 
             model={item.model}
             brand={item.brand}
             image={item.image}
@@ -49,6 +50,7 @@ const ProductsScreen = ({ navigation, route }) => {
           />
         )}
         keyExtractor={(item) => item.id}
+        showsVerticalScrollIndicator={false}
       />
       
     </View>

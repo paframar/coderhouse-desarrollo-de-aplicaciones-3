@@ -16,7 +16,7 @@ const CartNavigator = () => {
         },
         headerTintColor: Platform.OS === 'android' ? 'white' : COLORS.primary,
         headerTitleStyle: {
-          fontFamily: 'OpenSans_700Bold'
+          fontFamily: 'open-sans-bold'
         }
       }}
     >
