@@ -1,14 +1,14 @@
 import React from 'react'
 import { StyleSheet, View, Text, Button, Image, TouchableHighlight, TouchableOpacity } from 'react-native'
 
-import {COLORS} from '../colors/colors'
+import {COLORS} from '../constants/colors'
 
 
 const styles = StyleSheet.create({
     container:{
         height: '90%',
         width:'90%',
-        borderWidth:3,
+        borderWidth:2,
         borderColor:COLORS.DODGER_BLUE,
         backgroundColor:COLORS.WHITE,
         borderRadius: 8,
@@ -20,10 +20,10 @@ const styles = StyleSheet.create({
         justifyContent:'center',
         alignItems:'center',
         width:'80%',
-        backgroundColor: COLORS.WHITE_SMOKE,
-        borderTopWidth: 2,
-        borderBottomWidth: 4,
+        backgroundColor: COLORS.SKY_BLUE,
+        borderWidth:2,
         borderColor:COLORS.DODGER_BLUE,
+        borderRadius: 8,
     },
     touchable:{
         borderWidth: 1,
@@ -42,7 +42,7 @@ const styles = StyleSheet.create({
     text:{
         fontSize: 24,
         fontFamily:'open-sans',
-        color: COLORS.DARK_SLATE_GRAY,
+        color: COLORS.WHITE,
     },
     image:{
         height: 300,

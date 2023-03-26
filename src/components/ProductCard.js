@@ -1,6 +1,6 @@
 import React from 'react'
 import { StyleSheet, View, Text, Button, Image, TouchableHighlight, TouchableOpacity } from 'react-native'
-import {COLORS} from '../colors/colors'
+import {COLORS} from '../constants/colors'
 
 const styles = StyleSheet.create({
     container:{

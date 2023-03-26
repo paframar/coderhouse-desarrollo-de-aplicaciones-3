@@ -5,7 +5,8 @@ import * as SplashScreen from 'expo-splash-screen';
 
 import MainNavigator from './navigators/MainNavigator';
 
-
+import { Provider } from 'react-redux'
+import store from './store'
 
 export default function App() {
 
@@ -25,7 +26,9 @@ export default function App() {
   }
 
   return (
+    <Provider store={store}>
       <MainNavigator />
+    </Provider>
   );
 }
 

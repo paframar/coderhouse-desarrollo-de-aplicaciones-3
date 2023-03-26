@@ -1,7 +1,10 @@
 import React from 'react'
 import { StyleSheet, View, Text } from 'react-native'
 import DetailView from '../components/DetailView'
-import BuyButton from '../components/BuyButton'
+import DetailButton from '../components/DetailButton'
+
+import { useSelector } from 'react-redux'
+import { selectProduct } from '../../store/reducers/product.reducer'
 
 const styles = StyleSheet.create({
     container:{
@@ -13,10 +16,13 @@ const styles = StyleSheet.create({
 })
 
 const DetailScreen = ({ route }) => {
+
+    const selectedProduct = useSelector(state => state.products.selected)
+
     return (
         <View style={styles.container}>
-            <DetailView item={route.params.item} />
-            <BuyButton /> 
+            <DetailView item={selectedProduct} />
+            <DetailButton /> 
         </View>
     )
 }

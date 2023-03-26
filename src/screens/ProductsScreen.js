@@ -1,12 +1,13 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { StyleSheet, View, Text, FlatList } from 'react-native'
-
 
 import ProductCard from '../components/ProductCard'
 
-import { computerProducts } from '../../data/computerProducts'
-import {COLORS} from '../colors/colors'
+// import { computerProducts } from '../../data/computerProducts'
+import {COLORS} from '../constants/colors'
 
+import { useDispatch, useSelector } from 'react-redux'
+import { filterProducts, selectProduct } from '../../store/actions/product.action'
 
 const styles = StyleSheet.create({
   container:{
@@ -26,26 +27,36 @@ const styles = StyleSheet.create({
   },
 })
 
-const ProductsScreen = ({ navigation, route }) => {
-  const { category } = route.params;
-  const products = computerProducts.find((item) => item.category === category).products;
+const ProductsScreen = ({ navigation }) => {
+
+  const dispatch = useDispatch()
+  const selectedCategory = useSelector(state=> state.categories.selected) 
+  console.log('selectedCategory ', selectedCategory)
+
+  useEffect(()=>{
+    dispatch(filterProducts(selectedCategory))
+  }, [])
+  
+  const products = useSelector(state => state.products.filteredProducts)
+
+  console.log('products ', products)
 
   return (
     <View style={styles.container}>
-      <Text style={styles.header}>{category}</Text>
+      <Text style={styles.header}>{selectedCategory}</Text>
 
       <FlatList
         style={styles.flatList}
         data={products}
         renderItem={({item})=>(
           <ProductCard 
-            key={item} 
             model={item.model}
             brand={item.brand}
             image={item.image}
             price={item.price} 
             onPress={()=>{
-              navigation.navigate('Detail', { item })
+              navigation.navigate('Detail')
+              dispatch(selectProduct(item.id))
             }}
           />
         )}

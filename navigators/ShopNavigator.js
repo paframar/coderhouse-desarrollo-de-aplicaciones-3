@@ -6,7 +6,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import CategoryScreen from '../src/screens/CategoryScreen'
 import ProductsScreen from  '../src/screens/ProductsScreen'
 import DetailScreen from '../src/screens/DetailScreen'
-import { COLORS } from '../src/colors/colors'
+import { COLORS } from '../src/constants/colors'
 
 const styles = StyleSheet.create({})
 

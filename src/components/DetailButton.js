@@ -1,6 +1,7 @@
 import React from 'react'
 import { StyleSheet, View, Text, Button, TouchableOpacity } from 'react-native'
-import {COLORS} from '../colors/colors'
+import { COLORS } from '../constants/colors'
+
 
 const styles = StyleSheet.create({
     touchableHighlight:{
@@ -22,17 +23,17 @@ const styles = StyleSheet.create({
     }
 })
 
-const BuyButton = ({ onPress }) => {
+const DetailButton = ({ onPress }) => {
     return (
             <TouchableOpacity 
                 style={styles.touchableHighlight}
                 onPress={onPress}
             >
                 <Text style={styles.text}>
-                    Comprar
+                    Agregar al carrito
                 </Text>
             </TouchableOpacity>
     )
 }
 
-export default BuyButton
+export default DetailButton

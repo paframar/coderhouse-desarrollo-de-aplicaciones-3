@@ -1,19 +1,22 @@
 import React from 'react'
 import { StyleSheet, View, Text, Button, TouchableHighlight } from 'react-native'
 
-import {COLORS} from '../colors/colors'
+import {COLORS} from '../constants/colors'
 
 const styles = StyleSheet.create({
+    container:{
+        justifyContent:'center',
+        alignItems:'center',
+    },
     touchableHighlight:{
-        borderWidth: 1,
+        borderWidth: 2,
         width:'90%',
-        height: '15%',
+        height: '80%',
         justifyContent:'center',
         paddingHorizontal:'5%',
         borderRadius: 8,
-        borderColor: COLORS.WHITE_SMOKE,
+        borderColor: COLORS.DARK_SLATE_GRAY,
         backgroundColor: COLORS.DODGER_BLUE,
-        marginTop:15,
     },
     text:{
         fontSize: 18,
@@ -26,10 +29,12 @@ const styles = StyleSheet.create({
 
 const CategoryButton = ({ title, icon, onPress }) => {
     return (
+        <View style={styles.container}>
+
             <TouchableHighlight 
                 style={styles.touchableHighlight}
                 onPress={onPress}
-            >
+                >
                 <View style={{flexDirection:'row'}}>
                     {icon()}
                     <Text style={styles.text}>
@@ -37,6 +42,8 @@ const CategoryButton = ({ title, icon, onPress }) => {
                     </Text>
                 </View>
             </TouchableHighlight>
+        </View>
+
     )
 }
 

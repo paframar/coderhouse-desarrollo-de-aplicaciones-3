@@ -9,7 +9,7 @@ import OrdersScreen from '../src/screens/OrdersScreen'
 import CartScreen from '../src/screens/CartScreen'
 import ShopNavigator from './ShopNavigator'
 import styles from './styles'
-import { COLORS } from  '../src/colors/colors'
+import { COLORS } from  '../src/constants/colors'
 
 const BottomTabs = createBottomTabNavigator()
 
