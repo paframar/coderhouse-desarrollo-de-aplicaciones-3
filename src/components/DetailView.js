@@ -6,7 +6,7 @@ import {COLORS} from '../constants/colors'
 
 const styles = StyleSheet.create({
     container:{
-        height: '90%',
+        height: '95%',
         width:'90%',
         borderWidth:2,
         borderColor:COLORS.DODGER_BLUE,
