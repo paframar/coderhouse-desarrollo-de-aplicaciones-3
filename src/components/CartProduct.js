@@ -1,6 +1,9 @@
 import React from 'react'
-import { StyleSheet, View, Text, Image } from 'react-native'
+import { StyleSheet, View, Text, Image, Button } from 'react-native'
 import { COLORS } from '../constants/colors'
+
+import { addToCart, removeFromCart } from '../../store/actions/cart.action'
+import { useDispatch, useSelector } from 'react-redux'
 
 const styles = StyleSheet.create({
     container:{
@@ -52,7 +55,7 @@ const styles = StyleSheet.create({
     },
     image:{
         height:'80%', 
-        width: 220,
+        width: '100%',
         borderWidth:1, 
         borderColor: COLORS.DODGER_BLUE,
         borderRadius: 8,
@@ -60,21 +63,33 @@ const styles = StyleSheet.create({
 })
 
 const CartProduct = ({ cartProduct }) => {
+
+    const dispatch = useDispatch()
+    const handleAddToCart = () => dispatch(addToCart(cartProduct))
+    const handleRemoveFromCart = () => dispatch(removeFromCart(cartProduct))
+
     return (
         <View style={styles.container}>
 
             <View style={{flexDirection:'column'}}>
-                <Text style={styles.idText} > {`ID: ${cartProduct.product.id}`} </Text>
-                <Image source={{uri:`${cartProduct.product.image}`}} style={styles.image} />
+                <Text style={styles.idText} > {`ID: ${cartProduct.id}`} </Text>
+                <Image source={{uri:`${cartProduct.image}`}} style={styles.image} />
 
-                <Text style={styles.productNameText} > {`${cartProduct.product.brand} ${cartProduct.product.model}`}</Text>
+                <Text style={styles.productNameText} > {`${cartProduct.brand} ${cartProduct.model}`}</Text>
             </View >
 
             <View style={{flexDirection:'column', width: '15%'}}>
-                <Text style={styles.priceText} > {`$ ${cartProduct.product.price}`} </Text>
+                <Text style={styles.priceText} > {`$ ${cartProduct.price}`} </Text>
                 <Text style={styles.quantityText} > {`x ${cartProduct.quantity}`} </Text>
-                <Text style={styles.priceText} > {`$ ${cartProduct.product.price * cartProduct.quantity}`} </Text>
+                <Text style={styles.priceText} > {`$ ${cartProduct.price * cartProduct.quantity}`} </Text>
+
+
             </View >
+
+            <View style={{flexDirection:'column', alignItems:'center', justifyContent:'center', width: '15%'}}>
+                <Button title={'+'} onPress={handleAddToCart} />
+                <Button title={'-'} onPress={handleRemoveFromCart} />
+            </View>
 
         </View>
     )

@@ -5,33 +5,57 @@ const INITIAL_STATE = {
     total: 0,
 }
 
+const sumTotal = (list) => list
+    .map(item => item.quantity * item.price)
+    .reduce((a, b) => a + b, 0);
+
 const CartReducer = (state = INITIAL_STATE, action) => {
     
     switch(action.type){
         case ADD_TO_CART:
-            const alreadyInCart = state.products.find((cartProduct)=> cartProduct.product.id === action.payload.id)
-            if (alreadyInCart){
-                return {
-                    ...state,
-                    products: state.products.map(cartProduct => cartProduct.product.id === action.payload.id
-                        ? {...cartProduct, quantity: cartProduct.quantity + 1}
-                        : cartProduct
-                    ),
-                    total: state.total + action.payload.price
-                };
-            }else{
-                return {
-                    ...state,
-                    products: [...state.products, {product: action.payload, quantity: 1}],
-                    total: state.total + action.payload.price
-                };
+            
+            let updatedAddCart = [];
+
+            if (state.products.find( product => product.id === action.payload.id)){
+                updatedAddCart = state.products.map( product => {
+                    if (product.id === action.payload.id) product.quantity ++;
+                    return product;
+                });
+
+            } else {
+                updatedAddCart = [...state.products, { ...action.payload, quantity: 1}]
+            }
+
+            return {
+                ...state,
+                products: updatedAddCart,
+                total: sumTotal(updatedAddCart)
             }
             
         case REMOVE_FROM_CART:
-            return {
-                products: state.products.filter((item) => item.id !== action.payload.id),
-                total: newstate.total - action.payload.price,                
+            const productToRemove = state.products.filter(product => product.id === action.payload.id)[0];
+            let updatedRemoveCart = [];
+
+            console.log('REMOVE_FROM_CART productToRemove ', productToRemove)
+
+            if (productToRemove.quantity === 1){
+                updatedRemoveCart = state.products.filter(product => product.id !== action.payload.id);
+            } else {
+                updatedRemoveCart = state.products.map( product => {
+                    if (product.id === action.payload.id) product.quantity --;
+                    return product; 
+                })
             }
+
+
+            console.log('REMOVE_FROM_CART updatedRemoveCart ', updatedRemoveCart)
+
+            return {
+                ...state,
+                products: updatedRemoveCart,
+                total: sumTotal(updatedRemoveCart),                
+            }
+
         default:
             return state;
     }
