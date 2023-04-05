@@ -1,4 +1,4 @@
-import { ADD_TO_CART, REMOVE_FROM_CART } from '../actions/cart.action'
+import { ADD_TO_CART, REMOVE_FROM_CART, CONFIRM_CART, EMPTY_CART } from '../actions/cart.action'
 
 const INITIAL_STATE = {
     products:[],
@@ -46,8 +46,7 @@ const CartReducer = (state = INITIAL_STATE, action) => {
                     return product; 
                 })
             }
-
-
+            
             console.log('REMOVE_FROM_CART updatedRemoveCart ', updatedRemoveCart)
 
             return {
@@ -55,6 +54,13 @@ const CartReducer = (state = INITIAL_STATE, action) => {
                 products: updatedRemoveCart,
                 total: sumTotal(updatedRemoveCart),                
             }
+        case CONFIRM_CART:
+            return {
+                ...state,
+            }
+        
+        case EMPTY_CART:
+            return INITIAL_STATE; 
 
         default:
             return state;

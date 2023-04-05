@@ -15,7 +15,7 @@ const styles = StyleSheet.create({
         justifyContent:'center',
         paddingHorizontal:'5%',
         borderRadius: 8,
-        borderColor: COLORS.DARK_SLATE_GRAY,
+        borderColor: COLORS.DEEP_SKY_BLUE,
         backgroundColor: COLORS.DODGER_BLUE,
     },
     text:{

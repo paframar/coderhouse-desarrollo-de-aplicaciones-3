@@ -1,6 +1,7 @@
 import React from 'react'
-import { StyleSheet, View, Text, FlatList } from 'react-native'
+import { StyleSheet, View, Text, FlatList, Button } from 'react-native'
 import { useSelector, useDispatch } from 'react-redux'
+import { confirmCart, emptyCart } from '../../store/actions/cart.action'
 
 import CartProduct from '../components/CartProduct'
 import CartTotal from '../components/CartTotal'
@@ -18,10 +19,18 @@ const styles = StyleSheet.create({
     }
 })
 
+
+
 const CartScreen = ({ navigation }) => {
     const dispatch = useDispatch()
     const cartProducts = useSelector(state => state.cart.products)
     const cartTotal = useSelector(state => state.cart.total)
+
+    const handleConfirmCart = () => {
+        dispatch(confirmCart(cartProducts, cartTotal))
+        dispatch(emptyCart())
+    }
+
     return (
         <View style={styles.container}>
             <FlatList
@@ -34,6 +43,9 @@ const CartScreen = ({ navigation }) => {
                 showsVerticalScrollIndicator={false}
             />
             <CartTotal total={cartTotal} />
+            <View style={{paddingVertical: 20}} >
+                <Button title={'Confirmar'} onPress={handleConfirmCart} />
+            </View>
         </View>
     )
 }
