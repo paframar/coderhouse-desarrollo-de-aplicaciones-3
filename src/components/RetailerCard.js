@@ -33,7 +33,13 @@ const styles = StyleSheet.create({
         fontFamily:'open-sans',
         color:COLORS.NAVY_BLUE,
         right: '20%'
-
+    },
+    message:{
+        width:'100%',
+        fontSize: 11,
+        fontFamily:'open-sans',
+        color:COLORS.GRAY,
+        left: '20%'
     },
     retailerTitle:{
         width:'100%',
@@ -46,11 +52,12 @@ const styles = StyleSheet.create({
     },
 })
 
-const RetailerCard = ({retailer}) => {
+const RetailerCard = ({retailer, permissions, verifyPermissions}) => {
     
     const { lat, lng } = retailer.location
 
     const [locationValue, setLocationValue] = React.useState({ lat, lng })
+    
 
     const dispatch = useDispatch()
 
@@ -58,48 +65,25 @@ const RetailerCard = ({retailer}) => {
         dispatch(selectRetailer(retailer.id))
     }
 
-    // const getAddress = () => {
-
-    //     // TODO
-
-    //     return async () => {
-
-
-    //         // const response = await fetch(`https://maps.googleapis.com/maps/api/geocode/json?latlng=${locationValue.lat},${locationValue.lng}&key=${STATIC_MAP_API_KEY}`)
-
-    //         const response = await fetch(`https://maps.googleapis.com/maps/api/geocode/json?latlng=-25.3444,131.0369&key=${STATIC_MAP_API_KEY}`)
-
-    //         console.log('RESDATA ====== ', resData)
-
-    
-    //         if(!response.ok) throw new Error('Respuesta invalida')
-            
-    //         const resData = await response.json()
-
-    //         console.log('RESDATA ====== ', resData)
-    
-    //         if(!resData.results){
-    //             throw new Error('No se pudo encontrar la direccion')
-    //         }
-    //         console.log('getAddress ', resData.results[0].formatted_address)
-
-    //         return resData.results[0].formatted_address
-    
-    //     }
-    // }
-
-    // useEffect(()=>{
-    //     const address = getAddress()
-    //     console.log('address ', address)
-    // }, [])
-
     return <TouchableOpacity onPress={handleSelectRetailer}>
 
             <View style={[styles.container]}>
                 <View style={{flexDirection:'column', height:'100%', justifyContent:'flex-start',
                             paddingTop: '5%', borderRadius: 20, backgroundColor: COLORS.ALICE_BLUE,
                 }}>
-                    <LocationService retailerLocation={retailer.location} />
+                    {permissions ? (
+                        <LocationService retailerLocation={retailer.location} />
+
+                    ):(
+                        <View style={{width:'60%', height:'100%', alignItems:'center'}}>
+                            <Text style={styles.message}>
+                                No se puede acceder a la ubicación. 
+                            </Text>
+                            <Text style={styles.message}>
+                                Favor de conceder permisos.
+                            </Text>
+                        </View>
+                    )}
                 </View>
 
                 <View style={{flexDirection:'column', justifyContent:'space-evenly', width: 220}}>

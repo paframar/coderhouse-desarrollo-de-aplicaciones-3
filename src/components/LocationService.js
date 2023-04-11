@@ -40,7 +40,6 @@ const styles = StyleSheet.create({
   
 
 const LocationService = ({ retailerLocation } ) => {
-    console.log('retailerLocation   ', retailerLocation)
 
     const { lat, lng } = retailerLocation
     const [location, setLocation] = useState({ lat, lng })
@@ -48,9 +47,6 @@ const LocationService = ({ retailerLocation } ) => {
     const handleGeoLocation = async (position) => {
         const hasPermission = await verifyGeolocationPermission()
         if (!hasPermission) return
-        // const location = await Location.getCurrentPositionAsync({
-        //     timeout: 5000,
-        // })
         const { lat, lng } = retailerLocation
         setLocation({ lat, lng })
     }
