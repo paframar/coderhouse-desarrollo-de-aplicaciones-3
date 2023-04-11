@@ -7,6 +7,7 @@ import { Entypo } from '@expo/vector-icons'
 
 import OrdersScreen from '../src/screens/OrdersScreen'
 import CartScreen from '../src/screens/CartScreen'
+import RetailersScreen from '../src/screens/RetailersScreen'
 import ShopNavigator from './ShopNavigator'
 import styles from './styles'
 import { COLORS } from  '../src/constants/colors'
@@ -54,6 +55,18 @@ const TabsNavigator = () => {
                         <View style={styles.tabBarIcon}>
                           <Octicons name="checklist" size={24} color={focused ? COLORS.DODGER_BLUE : COLORS.GRAY} />
                           <Text style={{ color: focused ? COLORS.DODGER_BLUE : COLORS.GRAY }}>Orders</Text>
+                        </View>
+                      )
+                }}
+            />
+            <BottomTabs.Screen 
+                name= {'Retailers'} 
+                component={RetailersScreen} 
+                options={{
+                    tabBarIcon: ({ focused }) => (
+                        <View style={styles.tabBarIcon}>
+                          <Octicons name="location" size={24} color={focused ? COLORS.DODGER_BLUE : COLORS.GRAY} />
+                          <Text style={{ color: focused ? COLORS.DODGER_BLUE : COLORS.GRAY }}>Retailers</Text>
                         </View>
                       )
                 }}

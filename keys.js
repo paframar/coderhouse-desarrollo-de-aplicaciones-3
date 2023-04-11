@@ -1,0 +1,1 @@
+export const STATIC_MAP_API_KEY = 'AIzaSyDWKU6XvU1qcELqozUanDE9-dkc0wIcpvc';
