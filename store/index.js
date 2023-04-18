@@ -8,7 +8,17 @@ import CartReducer from './reducers/cart.reducer'
 import OrdersReducer from './reducers/orders.reducer'
 import RetailersReducer from './reducers/retailers.reducer'
 
-const RootReducer = combineReducers({
+
+import AsyncStorage from '@react-native-async-storage/async-storage'
+import { persistReducer, persistStore } from 'redux-persist'
+
+const persistConfig = {
+  key: 'root',
+  storage: AsyncStorage
+}
+
+
+const rootReducer = combineReducers({
     categories: CategoryReducer,
     products: ProductReducer,
     cart: CartReducer,
@@ -16,4 +26,7 @@ const RootReducer = combineReducers({
     retailers: RetailersReducer,
 });
 
-export default createStore(RootReducer, applyMiddleware(thunk))
+const persistedReducer = persistReducer(persistConfig, rootReducer)
+
+export const store = createStore(persistedReducer, applyMiddleware(thunk));
+export const persistedStore = persistStore(store);
