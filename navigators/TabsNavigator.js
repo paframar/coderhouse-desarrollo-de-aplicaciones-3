@@ -2,12 +2,14 @@ import React from 'react'
 import { StyleSheet, View, Text } from 'react-native'
 import { NavigationContainer } from '@react-navigation/native'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
-import { Ionicons, Octicons } from '@expo/vector-icons'
+import { Ionicons, Octicons, AntDesign } from '@expo/vector-icons'
 import { Entypo } from '@expo/vector-icons'
 
 import OrdersScreen from '../src/screens/OrdersScreen'
 import CartScreen from '../src/screens/CartScreen'
 import RetailersScreen from '../src/screens/RetailersScreen'
+import AccountScreen from '../src/screens/AccountScreen'
+
 import ShopNavigator from './ShopNavigator'
 import styles from './styles'
 import { COLORS } from  '../src/constants/colors'
@@ -67,6 +69,18 @@ const TabsNavigator = () => {
                         <View style={styles.tabBarIcon}>
                           <Octicons name="location" size={24} color={focused ? COLORS.DODGER_BLUE : COLORS.GRAY} />
                           <Text style={{ color: focused ? COLORS.DODGER_BLUE : COLORS.GRAY }}>Retailers</Text>
+                        </View>
+                      )
+                }}
+            />
+            <BottomTabs.Screen 
+                name= {'Account'} 
+                component={AccountScreen} 
+                options={{
+                    tabBarIcon: ({ focused }) => (
+                        <View style={styles.tabBarIcon}>
+                          <AntDesign name="user" size={24} color={focused ? COLORS.DODGER_BLUE : COLORS.GRAY} />
+                          <Text style={{ color: focused ? COLORS.DODGER_BLUE : COLORS.GRAY }}>Account</Text>
                         </View>
                       )
                 }}

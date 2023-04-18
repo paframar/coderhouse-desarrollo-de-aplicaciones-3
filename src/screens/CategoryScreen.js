@@ -12,7 +12,7 @@ const styles = StyleSheet.create({
     container:{
         justifyContent:'center',
         alignItems:'center',
-        height:'85%',
+        height: '100%',
     }
 })
 
@@ -57,10 +57,12 @@ const CategoryScreen = ({ navigation }) => {
     )
 
     return (
-        <FlatList
-            data={categories}
-            renderItem={renderListItem}    
-        />
+        <View style={styles.container}>
+            <FlatList
+                data={categories}
+                renderItem={renderListItem}    
+            />
+        </View>
     )
 }
 
