@@ -1,6 +1,7 @@
 
 import { useState } from 'react'
-import { Input, Button } from 'react-native-elements'
+import { Button } from '@react-native-material/core'
+import { Input } from 'react-native-elements'
 import { StyleSheet, View, Text, TouchableOpacity, KeyboardAvoidingView } from 'react-native'
 import { COLORS } from '../constants/colors'
 
@@ -74,20 +75,15 @@ const SignInForm = ({ formTitle, labelText, onSignIn, onNavigate, buttonTitle, n
             maxWidth: 400,
             padding: 12,
             margin: 12,
-            borderColor: '#ccc',
-            borderWidth: 1,
-            borderRadius: 10,
-            backgroundColor: '#fff',
             justifyContent:'space-around',
+            alignItems:'center',
             height: '50%'
         },
         form: {
             width: '100%',
             height: '70%',
-            justifyContent: 'space-between',
+            justifyContent: 'center',
             alignItems: 'center',
-            borderColor: COLORS.WHITE_SMOKE,
-            borderWidth:2,
         },
         label: {
             fontSize: 16,
@@ -101,10 +97,10 @@ const SignInForm = ({ formTitle, labelText, onSignIn, onNavigate, buttonTitle, n
             marginBottom: 12,
         },
         loginButton: {
-            width: '100%',
             justifyContent: 'center',
-            height: 40,
-            backgroundColor: COLORS.WHITE,
+            height: '10%',
+            width: '60%',
+            backgroundColor: COLORS.DODGER_BLUE,
             marginVertical: 12,
         },
         loginButtonText: {
@@ -114,26 +110,27 @@ const SignInForm = ({ formTitle, labelText, onSignIn, onNavigate, buttonTitle, n
             color: '#fff',
         },
         prompt: {
+            justifyContent:'center',
             alignItems: 'center',
-            justifyContent:'space-around',
-            height: '30%',
-            padding: 10,
-            paddingTop: 20,
+            width: '100%',
+            height: '18%',
+            backgroundColor:COLORS.WHITE_SMOKE,
+            borderBottomWidth:1,
+            borderTopWidth:1,
         },
         promptMessage: {
             fontSize: 13,
+            paddingBottom: 5,
             fontFamily: 'open-sans',
             color: COLORS.GRAY,
+            justifyContent: 'space-between',
         },
         promptButton: {
-            fontSize: 16,
+            fontSize: 12,
             fontFamily: 'open-sans-bold',
-            backgroundColor: COLORS.ALICE_BLUE
+            width: '60%',
+            backgroundColor: COLORS.SILVER,
         },
-        button: {
-            backgroundColor: COLORS.ALICE_BLUE,
-            marginVertical: 20,
-        }
     })
 
 export default SignInForm

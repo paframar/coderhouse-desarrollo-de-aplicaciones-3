@@ -28,7 +28,7 @@ export const signUp = (email, password) => {
                 })
                 const errorResData = await response.json();
                 const errorId = errorResData.error.message;
-                let message = `No se pudo registrar! Error ID: ${errorId}`;
+                let message = `No se pudo registrar. ${errorId}`;
 
                 if (errorId === 'EMAIL_EXISTS') {
                     message = 'Este email ya existe!';
@@ -88,7 +88,7 @@ export const signIn = (email, password) => {
             if (!response.ok) {
                 const errorResData = await response.json();
                 const errorId = errorResData.error.message;
-                let message = `No se pudo iniciar sesión! Error ID: ${errorId}`;
+                let message = `No se pudo iniciar sesión. ${errorId}`;
             
                 if (errorId === 'EMAIL_NOT_FOUND') {
                 message = 'No se encontró una cuenta con esta dirección de correo electrónico';
