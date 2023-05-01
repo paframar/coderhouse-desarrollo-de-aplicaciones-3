@@ -3,7 +3,6 @@ import { StyleSheet, View, Text, FlatList } from 'react-native'
 
 import ProductCard from '../components/ProductCard'
 
-// import { computerProducts } from '../../data/computerProducts'
 import {COLORS} from '../constants/colors'
 
 import { useDispatch, useSelector } from 'react-redux'
@@ -31,7 +30,6 @@ const ProductsScreen = ({ navigation }) => {
 
   const dispatch = useDispatch()
   const selectedCategory = useSelector(state=> state.categories.selected) 
-  console.log('selectedCategory ', selectedCategory)
 
   useEffect(()=>{
     dispatch(filterProducts(selectedCategory))
@@ -39,7 +37,6 @@ const ProductsScreen = ({ navigation }) => {
   
   const products = useSelector(state => state.products.filteredProducts)
 
-  console.log('products ', products)
 
   return (
     <View style={styles.container}>

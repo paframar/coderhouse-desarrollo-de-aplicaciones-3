@@ -2,10 +2,11 @@ import { URL_API } from "../../src/constants/database";
 
 export const GET_ORDERS = 'GET_ORDERS';
 
-export const getOrders = () => {
+export const getOrders = (userId) => {
     return async dispatch => {
         try {
-            const response = await fetch(`${URL_API}/ordenes.json`, {
+            const response = await fetch(`${URL_API}ordenes.json`, {
+                method: 'GET',
                 headers:{
                     'Content-type':'application/json',
                 },
@@ -18,8 +19,6 @@ export const getOrders = () => {
                     id: key,
                 }
             ))
-
-            console.log('ORDERS : ', orders)
 
             dispatch(
                 {

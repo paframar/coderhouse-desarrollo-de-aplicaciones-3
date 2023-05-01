@@ -12,12 +12,8 @@ const styles = StyleSheet.create({
         paddingVertical: '2%',
         top: '2%',
 
-
         borderRadius: 8,
-        borderTopWidth: 2,
-        borderBottomWidth: 4,
-        borderRightWidth:4,
-        borderLeftWidth:2,
+        borderWidth:1,
         borderColor: COLORS.DODGER_BLUE,
         backgroundColor: COLORS.WHITE,
     },

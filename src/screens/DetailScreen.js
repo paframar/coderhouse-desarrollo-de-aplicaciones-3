@@ -18,7 +18,7 @@ const styles = StyleSheet.create({
     }
 })
 
-const DetailScreen = ({ route }) => {
+const DetailScreen = ({ navigation }) => {
 
     const dispatch = useDispatch()
     const selectedProduct = useSelector(state => state.products.selected)
@@ -27,14 +27,16 @@ const DetailScreen = ({ route }) => {
 
     const handleAddToCart = (selectedProduct) => {
         dispatch(addToCart(selectedProduct))
-        console.log('cart ', cart)
     }
-    console.log(selectedProduct)
 
     return (
         <View style={styles.container}>
             <DetailView item={selectedProduct} />
-            <DetailButton onPress={()=>handleAddToCart(selectedProduct)} /> 
+            <View style={{display:'flex', flexDirection:'row', justifyContent: 'space-between', width: '90%'}}>
+                <DetailButton title={' < Products '} onPress={()=>{navigation.navigate('Products')}} /> 
+                <DetailButton title={'Agregar al carrito'} onPress={()=>handleAddToCart(selectedProduct)} /> 
+            </View>
+            
         </View>
     )
 }

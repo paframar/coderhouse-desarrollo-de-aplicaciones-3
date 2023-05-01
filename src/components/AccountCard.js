@@ -23,7 +23,7 @@ const styles = StyleSheet.create({
         width: '80%',
     },
     text:{
-        fontSize: 13,
+        fontSize: 16,
         fontFamily:'open-sans',
         color:COLORS.NAVY_BLUE,
     },
@@ -45,11 +45,13 @@ const styles = StyleSheet.create({
 
 const AccountCard = () => {
 
+    const user = useSelector(state => state.auth.userEmail)
+
     return <View style={[styles.container]}>
             <View style={[{alignItems:'center', justifyContent:'space-between'}]}>
-                <ImageSelector onImage={image => console.log(image)} />
-                <Text style={[styles.labelText]}>username id</Text>
-                <Text style={[styles.text]}>user@name.com</Text>
+                <ImageSelector />
+                <Text style={[styles.text]}> {user} </Text>
+                <Text style={[styles.labelText]}>Usuario registrado </Text>
             </View>
         </View>  
 }

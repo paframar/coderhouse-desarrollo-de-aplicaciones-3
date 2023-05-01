@@ -10,6 +10,8 @@ import { Provider } from 'react-redux'
 import { PersistGate } from 'redux-persist/es/integration/react'
 import { store, persistedStore } from './store'
 
+import LoginScreen from './src/screens/LoginScreen'
+
 export default function App() {
 
   const [fontsLoaded] = useFonts({

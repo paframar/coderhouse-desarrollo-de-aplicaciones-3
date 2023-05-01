@@ -8,6 +8,7 @@ import CartReducer from './reducers/cart.reducer'
 import OrdersReducer from './reducers/orders.reducer'
 import RetailersReducer from './reducers/retailers.reducer'
 import UserReducer from './reducers/user.reducer'
+import AuthReducer from './reducers/auth.reducer'
 
 
 import AsyncStorage from '@react-native-async-storage/async-storage'
@@ -15,7 +16,8 @@ import { persistReducer, persistStore } from 'redux-persist'
 
 const persistConfig = {
   key: 'root',
-  storage: AsyncStorage
+  storage: AsyncStorage,
+  blacklist: ['orders']
 }
 
 const rootReducer = combineReducers({
@@ -25,6 +27,7 @@ const rootReducer = combineReducers({
     orders: OrdersReducer,
     retailers: RetailersReducer,
     user: UserReducer,
+    auth: AuthReducer,
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer)

@@ -1,23 +1,16 @@
-import React, { useState, useEffect } from 'react'
-import { View, Button, Image, Text, StyleSheet, Alert } from 'react-native'
+import React, { useState } from 'react'
+import { View, Image, Text, StyleSheet, Alert } from 'react-native'
+import { Button } from '@react-native-material/core'
 import * as ImagePicker from 'expo-image-picker'
-import * as Permissions from 'expo-permissions'
 import { COLORS } from '../constants/colors'
 
 const ImageSelector = ({onImage}) => {
 
     const [pickedUri, setPickedUri] = useState()
 
-    useEffect(()=>{
-        console.log('pickedUri ', pickedUri)
-    })
-
     const VerifyPermissions = async () => {
         const cameraPermission = await ImagePicker.requestCameraPermissionsAsync()
         const mediaPermission = await ImagePicker.requestMediaLibraryPermissionsAsync()
-
-        console.log('cameraPermission ', cameraPermission.status)
-        console.log('mediaPermission ', mediaPermission.status)
 
         if(cameraPermission.status !== 'granted' || mediaPermission.status !== 'granted') {
             Alert.alert('No se han concedido permisos.')
@@ -36,7 +29,6 @@ const ImageSelector = ({onImage}) => {
             quality: 0.8,
         })
 
-        console.log(image.assets)
         setPickedUri(image.assets[0].uri)
         onImage(image.assets[0].uri)
     }
@@ -45,13 +37,11 @@ const ImageSelector = ({onImage}) => {
         <View style={styles.container}>
             <View style={styles.preview}>
                 {!pickedUri
-                    ? (<Text>No hay imagen seleccionada...</Text>)
+                    ? (<Text style={styles.labelText}>No hay imagen seleccionada</Text>)
                     : (<Image style={styles.image} source={{ uri: pickedUri }} />)
                 }
             </View>
-            <View style={styles.button}>
-                <Button  title="Cambiar imagen" onPress={handlerTakeImage} />
-            </View>
+            <Button  title="Cambiar imagen"  style={styles.button} onPress={handlerTakeImage} />
         </View>
     )
 }
@@ -61,7 +51,6 @@ export default ImageSelector
 const styles = StyleSheet.create({
     container: {
         marginBottom: 10,
-        justifyContent: 'space-between',
         alignItems:'center',
     },
     preview: {
@@ -79,5 +68,11 @@ const styles = StyleSheet.create({
     },
     button:{
         top:100,
+        backgroundColor: COLORS.SKY_BLUE,
+    },
+    labelText:{
+        fontSize: 10,
+        fontFamily:'open-sans',
+        color:COLORS.GRAY,
     },
 })

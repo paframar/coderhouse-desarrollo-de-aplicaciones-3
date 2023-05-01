@@ -6,19 +6,14 @@ import { useDispatch, useSelector } from 'react-redux'
 
 const styles = StyleSheet.create({
     container:{
-        height: 140,
+        height: 100,
         width:'100%',
-        flexDirection:'row',
-        justifyContent:'space-between',
+        justifyContent:'center',
         alignItems: 'center',
-        paddingHorizontal:'5%',
         paddingVertical:10,
-        marginVertical: '2%',
+        marginVertical: '3%',
         borderRadius: 8,
-        borderTopWidth: 2,
-        borderBottomWidth: 4,
-        borderRightWidth:4,
-        borderLeftWidth:2,
+        borderWidth: 1,
         borderColor: COLORS.DODGER_BLUE,
         backgroundColor: COLORS.WHITE,
     },
@@ -26,24 +21,24 @@ const styles = StyleSheet.create({
         flexDirection:'row',
         justifyContent:'space-between',
         alignItems: 'flex-start',
-        paddingHorizontal:'5%',
         paddingVertical:5,
-        marginVertical: '2%',
-        borderRadius: 18,
-        borderBottomWidth: 1,
-        borderRightWidth:1,
+        borderRadius: 8,
         borderColor: COLORS.DODGER_BLUE,
         backgroundColor: COLORS.WHITE,
     },
+
+    productNameText:{
+        paddingHorizontal: 10,
+        fontSize: 10,
+        fontFamily:'open-sans',
+        color: COLORS.DARK_SLATE_GRAY,
+    },
+
     idText:{
         fontSize: 12,
         fontFamily:'open-sans',
         color: COLORS.GRAY,
-    },
-    productNameText:{
-        fontSize: 8,
-        fontFamily:'open-sans',
-        color: COLORS.DARK_SLATE_GRAY,
+        width: '100%',
     },
     priceText:{
         alignSelf:'center',
@@ -52,8 +47,7 @@ const styles = StyleSheet.create({
         fontFamily:'open-sans',
         backgroundColor: COLORS.DEEP_SKY_BLUE,
         color:COLORS.WHITE_SMOKE,
-        width:170,
-        height: '20%',
+        width: '100%',
     },
     dateText:{
         alignSelf:'center',
@@ -61,9 +55,8 @@ const styles = StyleSheet.create({
         fontSize: 12,
         fontFamily:'open-sans',
         backgroundColor: COLORS.DODGER_BLUE,
-        color: COLORS.GAINSBORO,
-        width:170,
-        height: '20%',
+        color:COLORS.WHITE_SMOKE,
+        width: '100%',
     },
     image:{
         height:'80%', 
@@ -78,7 +71,6 @@ const OrderProduct = ({ orderProduct }) => {
 
     const [expand, setExpand] = useState(false)
     
-
         return <TouchableOpacity
                     onPress={()=>{
                         setExpand(!expand);
@@ -86,17 +78,9 @@ const OrderProduct = ({ orderProduct }) => {
                 >
 
                 <View style={[styles.container]}>
-                    
-                        <View style={{flexDirection:'column'}}>
-                            <Text style={styles.idText} > {`Order [${orderProduct.id}]`} </Text>
-                        </View >
-
-                        <View style={{flexDirection:'column', width: '15%'}}>
-                            <Text style={styles.dateText} > {`Date: ${orderProduct.date}`} </Text>
-                            <Text style={styles.priceText} > {`$ ${orderProduct.total}`} </Text>
-                        </View >
-
-                        
+                    <Text style={styles.idText} > {`Order [${orderProduct.id}]`} </Text>
+                    <Text style={styles.dateText} > {`Date: ${orderProduct.date}`} </Text>
+                    <Text style={styles.priceText} > {`$ ${orderProduct.total}`} </Text>
                 </View>
 
                 <View 

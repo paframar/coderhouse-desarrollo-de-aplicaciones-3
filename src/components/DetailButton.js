@@ -6,8 +6,7 @@ import { COLORS } from '../constants/colors'
 const styles = StyleSheet.create({
     touchableHighlight:{
         borderWidth: 2,
-        width:'90%',
-        height: '10%',
+        height: 50,
         justifyContent:'center',
         alignItems:'center',
         paddingHorizontal:'5%',
@@ -23,14 +22,14 @@ const styles = StyleSheet.create({
     }
 })
 
-const DetailButton = ({ onPress }) => {
+const DetailButton = ({ title, onPress }) => {
     return (
             <TouchableOpacity 
                 style={styles.touchableHighlight}
                 onPress={onPress}
-            >
+                >
                 <Text style={styles.text}>
-                    Agregar al carrito
+                    {title}
                 </Text>
             </TouchableOpacity>
     )

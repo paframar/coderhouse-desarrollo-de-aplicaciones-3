@@ -36,8 +36,6 @@ const CartReducer = (state = INITIAL_STATE, action) => {
             const productToRemove = state.products.filter(product => product.id === action.payload.id)[0];
             let updatedRemoveCart = [];
 
-            console.log('REMOVE_FROM_CART productToRemove ', productToRemove)
-
             if (productToRemove.quantity === 1){
                 updatedRemoveCart = state.products.filter(product => product.id !== action.payload.id);
             } else {
@@ -46,9 +44,7 @@ const CartReducer = (state = INITIAL_STATE, action) => {
                     return product; 
                 })
             }
-            
-            console.log('REMOVE_FROM_CART updatedRemoveCart ', updatedRemoveCart)
-
+        
             return {
                 ...state,
                 products: updatedRemoveCart,

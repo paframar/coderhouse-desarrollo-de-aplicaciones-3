@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { StyleSheet, View, Text, FlatList, Button } from 'react-native'
 import { useSelector, useDispatch } from 'react-redux'
 import { getOrders } from '../../store/actions/orders.action'
@@ -18,30 +18,39 @@ const styles = StyleSheet.create({
     }
 })
 
-
-
 const OrdersScreen = ({ navigation }) => {
 
-    useEffect(()=> dispatch(getOrders()), [])
-
-    const orders = useSelector(state => state.orders.products)
-    console.log('orders.products >>>  ', orders.products)
-    
-
     const dispatch = useDispatch()
-
+    const userId = useSelector(state => state.auth.userId)
+    
+    useEffect(()=> {
+        dispatch(getOrders())
+    }, [orders])
+    
+    const orders = useSelector(state => state.orders.products)
+    const userOrders = orders.filter((order)=> order.userId === userId)
+    console.log('userOrders ', userOrders)
+    console.log('len ', userOrders.length )
 
     return (
         <View style={styles.container}>
-            <FlatList
-                style={styles.flatList}
-                data={orders}
-                renderItem={({item})=>(
-                        <OrderProduct orderProduct={item} />
-                )}
-                keyExtractor={(item) => item.id}
-                showsVerticalScrollIndicator={false}
-            />
+            { userOrders.length > 0 
+            
+                ? (
+                    <FlatList
+                        style={styles.flatList}
+                        data={userOrders}
+                        renderItem={({item})=>(
+                                <OrderProduct orderProduct={item} />
+                        )}
+                        keyExtractor={(item) => item.id}
+                        showsVerticalScrollIndicator={false}
+                    />
+                ):(
+                    <Text>Aún tienes ordenes.</Text>   
+                )
+            }
+
         </View>
     )
 }
