@@ -1,6 +1,6 @@
 import React from 'react'
-import { StyleSheet, View, Text, Button, FlatList } from 'react-native'
-import  { Ionicons, Entypo, Feather, MaterialIcons, FontAwesome5} from '@expo/vector-icons'
+import { StyleSheet, View, Text, FlatList } from 'react-native'
+import { Ionicons, Entypo, Feather, MaterialIcons, FontAwesome5} from '@expo/vector-icons'
 
 import CategoryButton from '../components/CategoryButton'
 import { COLORS } from '../constants/colors'
@@ -12,14 +12,17 @@ const styles = StyleSheet.create({
     container:{
         justifyContent:'center',
         alignItems:'center',
-        height: '100%',
+        height: '80%',
+        marginTop: 15,
     }
 })
 
 const renderIcon = (name, iconLibName) => {
     const iconTypes = { Ionicons, Entypo, Feather, MaterialIcons, FontAwesome5}
     const Icon = iconTypes[iconLibName]
-    return <Icon name={name} size={24} color={COLORS.WHITE_SMOKE} />
+    return <View style={{backgroundColor: COLORS.SKY_BLUE, padding:20, borderRadius: 8}}>
+        <Icon name={name} size={24} color={COLORS.WHITE_SMOKE} />
+    </View>
 }
 
 const getIcon = (category) => {
@@ -48,20 +51,18 @@ const CategoryScreen = ({ navigation }) => {
         navigation.navigate('Products')
     }
     
-    const renderListItem = ({item}) => (
-        <CategoryButton
-            title={item}
-            icon={()=> getIcon(item)}
-            onPress={()=>handleSelectedCategory(item)}
-        />
+    const renderCategoryButtons = () => categories.map((category) => (
+            <CategoryButton
+                title={category}
+                icon={()=> getIcon(category)}
+                onPress={()=>handleSelectedCategory(category)}
+            />
+        )
     )
 
     return (
         <View style={styles.container}>
-            <FlatList
-                data={categories}
-                renderItem={renderListItem}    
-            />
+            {renderCategoryButtons()}
         </View>
     )
 }

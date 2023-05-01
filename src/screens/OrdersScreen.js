@@ -29,8 +29,6 @@ const OrdersScreen = ({ navigation }) => {
     
     const orders = useSelector(state => state.orders.products)
     const userOrders = orders.filter((order)=> order.userId === userId)
-    console.log('userOrders ', userOrders)
-    console.log('len ', userOrders.length )
 
     return (
         <View style={styles.container}>

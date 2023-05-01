@@ -1,5 +1,5 @@
 import { URL_AUTH_SIGN_UP, URL_AUTH_SIGN_IN, URL_AUTH_SIGN_OUT } from "../../src/constants/database"
-
+import { Alert } from "react-native"
 export const SIGN_UP = "SIGN_UP"
 export const SIGN_IN = "SIGN_IN"
 export const SIGN_OUT = "SIGN_OUT"
@@ -95,7 +95,8 @@ export const signIn = (email, password) => {
                 } else if (errorId === 'INVALID_PASSWORD') {
                 message = 'La contraseña no es válida';
                 }
-                throw new Error(message);
+                Alert.alert('Error', message)
+                return
             }
 
             
